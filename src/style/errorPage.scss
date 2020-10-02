@@ -1,0 +1,43 @@
+.error {
+    padding: 0% 3%;
+    padding-bottom: 2%;
+    &__wrapper {
+        max-width: 700px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 2%;
+        background: rgb(19, 14, 152);
+        background: linear-gradient(
+            36deg,
+            rgba(19, 14, 152, 0.9127800778514531) 0%,
+            rgba(184, 29, 253, 0.65507699661896) 41%,
+            rgba(252, 69, 102, 0.8567576688878676) 89%
+        );
+        border-radius: 40px;
+        box-shadow: 5px 5px 23px #ff0080;
+    }
+    &__title {
+        h1 {
+            font-family: "Proxima-Nova-Regular";
+            font-style: normal;
+            font-weight: 800;
+            font-size: 24px;
+            line-height: 29px;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            color: white;
+            &::selection {
+                color: transparent;
+            }
+        }
+    }
+    &__image {
+        max-width: 500px;
+        img {
+            width: 100%;
+        }
+    }
+}
