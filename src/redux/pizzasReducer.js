@@ -13,14 +13,16 @@ const pizzasReducer = (state = initialState, action) => {
         case SET_LOADED:
             return {
                 ...state,
-                isLoaded: true
-            }
+                isLoaded: action.payload
+            };
             break;
         case SET_PIZZAS:
             return {
                 ...state,
-                items: action.payload
-            }
+                items: action.payload,
+                isLoaded: true
+            };
+            break;
     }
 
     return state;

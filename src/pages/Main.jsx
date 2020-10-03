@@ -11,21 +11,27 @@ const Main = () => {
     const dispatch = useDispatch();
     const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
     const { category, sortBy } = useSelector(({ filters }) => filters);
+    const { items, isLoaded } = useSelector(({ pizzas }) => pizzas);
+
     const onSelectCategory = useCallback((index) => {
         dispatch(setCategory(index));
     }, []);
     useEffect(() => {
         dispatch(fetchPizzas(category, sortBy))
     }, [category, sortBy])
-
+    const sortItem = [
+        { id: 1, name: 'популярности', type: 'popular', order: 'desc' },
+        { id: 2, name: 'цене', type: 'price', order: 'desc' },
+        { id: 3, name: 'алфавиту', type: 'name', order: 'asc' },
+    ]
     return (
         <React.Fragment>
             <Header />
             <div className='sort-container'>
-                <SortPizza onClickCategory={onSelectCategory} activeCategory={category} categoryNames={categoryNames} />
-                <Filter />
+                <SortPizza categoryNames={categoryNames} onClickCategory={onSelectCategory} activeCategory={category} categoryNames={categoryNames} />
+                <Filter activeSortType={sortBy.type} items={sortItem} />
             </div>
-            <Gallery />
+            <Gallery isLoaded={isLoaded} items={items} categoryNames={categoryNames} category={category} />
         </React.Fragment>
     )
 }

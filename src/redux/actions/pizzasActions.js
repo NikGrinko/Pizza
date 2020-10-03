@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { getPizzas } from '../../api/api';
 
 
 const SET_LOADED = 'SET_LOADED';
@@ -9,11 +9,9 @@ export const fetchPizzas = (category, sortBy) => (dispatch) => {
         type: SET_LOADED,
         payload: false
     });
-    axios
-        .get('http://localhost:3001/pizzas')
-        .then(({ data }) => {
-            dispatch(setPizzas(data))
-        })
+    getPizzas(category, sortBy).then((response) => {
+        dispatch(setPizzas(response.data))
+    })
 }
 
 export const setPizzas = (items) => ({

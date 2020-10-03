@@ -176,6 +176,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    position: relative;
+    user-select: none;
     &__header {
         font-family: "Proxima-Nova-Regular";
         font-style: normal;
@@ -184,13 +186,13 @@ body {
         line-height: 17px;
         letter-spacing: 0.015em;
         color: #2c2c2c;
+        cursor: pointer;
         .item-selected {
             border-bottom: 1px dashed #fe5f1e;
             font-family: "Proxima-Nova-Regular";
             font-style: normal;
             font-weight: normal;
             color: #fe5f1e;
-            cursor: pointer;
         }
     }
     &__select {
@@ -202,6 +204,7 @@ body {
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
         border-radius: 10px;
         padding: 13px 0;
+
         &-item {
             font-family: "Proxima-Nova-Regular";
             font-style: normal;
@@ -213,9 +216,15 @@ body {
             padding: 10px 0;
             padding-left: 14px;
             cursor: pointer;
+            &-active {
+                background: rgba(254, 95, 30, 0.05);
+                color: #fe5f1e;
+            }
         }
         &-active {
             display: block;
+            position: absolute;
+            top: 10px;
         }
     }
 }

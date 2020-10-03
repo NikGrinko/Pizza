@@ -16,7 +16,6 @@ const filtersReducer = (state = initialState, action) => {
                 category: action.payload
             }
     }
-
     return state;
 }
 export default filtersReducer;

@@ -14,8 +14,6 @@ const PizzaCard = ({ data }) => {
     const onSelectSize = (index) => {
         setActiveSize(index);
     }
-
-
     return (
         <>
             <li className='card-item'>
