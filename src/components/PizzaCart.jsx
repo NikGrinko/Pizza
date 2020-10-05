@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-const PizzaCard = ({ data }) => {
+const PizzaCard = ({ data, types, sizes, id, name, imageUrl, price, onClickAddPizza }) => {
 
     const availableTypes = ['тонкое', 'традиционное'];
-    const availableSizes = ['26 см.', '30 см.', '40 см.']
+    const availableSizes = ['26 см', '30 см', '40 см']
 
-    const [activeType, setActiveType] = useState(0);
-    const [activeSize, setActiveSize] = useState(0);
+    const [activeType, setActiveType] = useState(types[0]);
+    const [activeSize, setActiveSize] = useState(sizes[0]);
 
     const onSelectType = (index) => {
         setActiveType(index);
@@ -14,6 +14,19 @@ const PizzaCard = ({ data }) => {
     const onSelectSize = (index) => {
         setActiveSize(index);
     }
+
+    const onAddPizza = () => {
+        const obj = {
+            id,
+            name,
+            imageUrl,
+            price,
+            size: availableSizes[activeSize],
+            type: availableTypes[activeType]
+        };
+        onClickAddPizza(obj);
+    }
+
     return (
         <>
             <li className='card-item'>
@@ -22,24 +35,30 @@ const PizzaCard = ({ data }) => {
                 </div>
                 <div className="card-item__title">{data.name}</div>
                 <div className="card-item__filters">
-                    <ul className="segmented-control">
+                    <div className="segmented-control">
                         {availableTypes.map((type, index) => (
-                            <li key={type} onClick={() => onSelectType(index)} className={classNames("segmented-control-select", {
-                                "segmented-control-select-active": activeType === index
-                            })}>{type}</li>
+                            <button key={type} disabled={!types.includes(index)} onClick={() => onSelectType(index)} className={classNames("segmented-control-select", {
+                                "segmented-control-select-active": activeType === index,
+                                'disabled': !types.includes(index),
+                                'shadow': types.includes(index)
+                            })}>{type}</button>
                         ))}
-                    </ul>
-                    <ul className="filter-size">
+                    </div>
+                    <div className="filter-size">
                         {availableSizes.map((size, index) => (
-                            <li key={size} onClick={() => onSelectSize(index)} className={classNames('filter-size-select', { 'filter-size-select-active': index === activeSize })}>{size}</li>
+                            <button disabled={!sizes.includes(index)} key={size} onClick={() => onSelectSize(index)} className={classNames('filter-size-select', {
+                                'filter-size-select-active': index === activeSize,
+                                'disabled': !sizes.includes(index),
+                                'shadow': sizes.includes(index)
+                            })}>{size}</button>
                         ))}
-                    </ul>
+                    </div>
                 </div>
                 <div className='card-item__result'>
                     <div className="card-item__result-price">
-                        от 395 ₽
+                        от {data.price} ₽
                     </div>
-                    <button className='add-card'><span className="button-plus"></span> Добавить <span className="button-current">2</span></button>
+                    <button onClick={onAddPizza} className='add-card'><span className="button-plus"></span> Добавить <span className="button-current">2</span></button>
                 </div>
             </li>
         </>

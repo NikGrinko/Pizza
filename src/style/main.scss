@@ -13,9 +13,11 @@ body {
     background-color: white;
     padding: 0% 12px;
     margin-bottom: 3%;
+    min-height: 900px;
 }
 .header {
     border-bottom: 2px solid #f7f7f7;
+    user-select: none;
 
     &__wrapper {
         padding: 0% 3%;
@@ -63,7 +65,9 @@ body {
 .logo {
     display: flex;
     cursor: default;
+    perspective: 1000px;
     padding: 3% 0%;
+
     &-image {
         display: flex;
         align-items: center;
@@ -82,11 +86,25 @@ body {
         line-height: 29px;
         letter-spacing: 0.01em;
         text-transform: uppercase;
+        text-shadow: 0px 0px 3px #a01dd0;
+        transition: 1.5s;
+    }
+    &:hover {
+        .logo {
+            &-title {
+                text-shadow: 2px -10px 4px #a01dd0;
+                transition: 1s;
+                transform-style: preserve-3d;
+                transform: rotateX(360deg);
+                font-size: 26px;
+            }
+        }
     }
     &-description {
         font-size: 16px;
         line-height: 19px;
         color: #7b7b7b;
+        text-shadow: 2px 2px 3px #7b7b7b;
     }
     @keyframes logo {
         0% {
@@ -301,9 +319,7 @@ body {
                 padding: 10px 23px;
                 cursor: pointer;
                 user-select: none;
-                &:hover {
-                    box-shadow: 0px 0px 6px #493f3f;
-                }
+
                 &:not(:last-child) {
                     margin-right: 5px;
                 }
@@ -324,9 +340,7 @@ body {
                 padding: 10px 23px;
                 cursor: pointer;
                 user-select: none;
-                &:hover {
-                    box-shadow: 0px 0px 6px #493f3f;
-                }
+
                 &:not(:last-child) {
                     margin-right: 5px;
                 }
@@ -431,5 +445,10 @@ body {
                 }
             }
         }
+    }
+}
+.shadow {
+    &:hover {
+        box-shadow: 0px 0px 6px #493f3f;
     }
 }

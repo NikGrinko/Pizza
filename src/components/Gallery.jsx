@@ -4,12 +4,12 @@ import PizzaLoading from './PizzaLoading';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-const Gallery = ({ items, categoryNames, category, isLoaded }) => {
+const Gallery = ({ items, categoryNames, category, isLoaded, onClickAddPizza }) => {
     const dispatch = useDispatch();
 
 
 
-    console.log(items)
+
     return (
         <div className='gallery'>
             <h2 className='gallery__title'>
@@ -17,7 +17,7 @@ const Gallery = ({ items, categoryNames, category, isLoaded }) => {
             </h2>
             <div className='gallery__container'>
                 <ul className='card-list'>
-                    {isLoaded ? (items.map((data) => <PizzaCard key={data.id} data={data} />))
+                    {isLoaded ? (items.map((data) => <PizzaCard onClickAddPizza={onClickAddPizza} {...data} key={data.id} data={data} />))
                         :
                         Array(6)
                             .fill(0)

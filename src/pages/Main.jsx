@@ -6,13 +6,13 @@ import Gallery from '../components/Gallery';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCategory } from '../redux/actions/filtersActions';
 import { fetchPizzas } from '../redux/actions/pizzasActions';
+import { addPizzaToCart } from '../redux/actions/cartActions';
 const Main = () => {
 
     const dispatch = useDispatch();
     const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
     const { category, sortBy } = useSelector(({ filters }) => filters);
     const { items, isLoaded } = useSelector(({ pizzas }) => pizzas);
-
     const onSelectCategory = useCallback((index) => {
         dispatch(setCategory(index));
     }, []);
@@ -24,6 +24,10 @@ const Main = () => {
         { id: 2, name: 'цене', type: 'price', order: 'desc' },
         { id: 3, name: 'алфавиту', type: 'name', order: 'asc' },
     ]
+
+    const addPizza = (obj) => {
+        dispatch(addPizzaToCart(obj))
+    }
     return (
         <React.Fragment>
             <Header />
@@ -31,7 +35,7 @@ const Main = () => {
                 <SortPizza categoryNames={categoryNames} onClickCategory={onSelectCategory} activeCategory={category} categoryNames={categoryNames} />
                 <Filter activeSortType={sortBy.type} items={sortItem} />
             </div>
-            <Gallery isLoaded={isLoaded} items={items} categoryNames={categoryNames} category={category} />
+            <Gallery onClickAddPizza={addPizza} isLoaded={isLoaded} items={items} categoryNames={categoryNames} category={category} />
         </React.Fragment>
     )
 }
