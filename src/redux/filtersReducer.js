@@ -1,4 +1,5 @@
 const SET_CATEGORY = 'SET_CATEGORY';
+const SET_SORT_BY = 'SET_SORT_BY';
 
 const initialState = {
     category: null,
@@ -14,6 +15,15 @@ const filtersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 category: action.payload
+            }
+            break;
+        case SET_SORT_BY:
+            return {
+                ...state,
+                sortBy: {
+                    type: action.payload.type,
+                    order: action.payload.order
+                }
             }
     }
     return state;

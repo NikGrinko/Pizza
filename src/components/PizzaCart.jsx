@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-const PizzaCard = ({ data, types, sizes, id, name, imageUrl, price, onClickAddPizza }) => {
+const PizzaCard = ({ data, types, sizes, id, name, imageUrl, price, onClickAddPizza, localCurrent }) => {
 
     const availableTypes = ['тонкое', 'традиционное'];
     const availableSizes = ['26 см', '30 см', '40 см']
@@ -58,7 +58,7 @@ const PizzaCard = ({ data, types, sizes, id, name, imageUrl, price, onClickAddPi
                     <div className="card-item__result-price">
                         от {data.price} ₽
                     </div>
-                    <button onClick={onAddPizza} className='add-card'><span className="button-plus"></span> Добавить <span className="button-current">2</span></button>
+                    <button onClick={onAddPizza} className='add-card'><span className="button-plus"></span> Добавить <span className="button-current">{localCurrent ? localCurrent : 0}</span></button>
                 </div>
             </li>
         </>

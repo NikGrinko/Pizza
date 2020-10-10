@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../source/logo.svg';
-const Logo = () => {
+const Logo = ({ discription }) => {
     return (
         <div className='logo'>
 
@@ -9,7 +9,7 @@ const Logo = () => {
             </div>
             <div>
                 <h1 className='logo-title'>REACT PIZZA</h1>
-                <p className='logo-description'>самая вкусная пицца во вселенной</p>
+                <p className='logo-description'>{discription}</p>
             </div>
 
         </div>
