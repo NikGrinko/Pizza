@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-const Filter = ({ items, activeSortType, filterPizza }) => {
+const Filter = React.memo(function Filter({ items, activeSortType, filterPizza }) {
     const [visiblePopup, setVisiblePopup] = useState(false)
     const [activeFilter, setActiveFilter] = useState(0);
-    const sortRef = useRef();
+    const filterRef = useRef();
 
     //Link for filter item
     const toggleVisiblePopup = () => {
@@ -21,7 +22,7 @@ const Filter = ({ items, activeSortType, filterPizza }) => {
     //click comparison
     const handleOutsideClick = (event) => {
         const path = event.path || (event.composedPath && event.composedPath());
-        if (!path.includes(sortRef.current)) {
+        if (!path.includes(filterRef.current)) {
             setVisiblePopup(false);
         }
     }
@@ -31,7 +32,7 @@ const Filter = ({ items, activeSortType, filterPizza }) => {
 
     }, [])
     return (
-        <div ref={sortRef} className='filter'>
+        <div ref={filterRef} className='filter'>
             <div onClick={toggleVisiblePopup} className='filter__header'>Сортировка по: <span className='item-selected'>{items[activeFilter].name}</span></div>
 
             <ul className={classNames("filter__select", { 'filter__select-active': visiblePopup })}>
@@ -42,5 +43,16 @@ const Filter = ({ items, activeSortType, filterPizza }) => {
 
         </div >
     )
+})
+Filter.propTypes = {
+    items: PropTypes.array,
+    activeSortType: PropTypes.string,
+    filterPizza: PropTypes.func
+
+}
+Filter.defaultProps = {
+    activeSortType: 'popular'
 }
 export default Filter;
+
+

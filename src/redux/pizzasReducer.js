@@ -15,16 +15,18 @@ const pizzasReducer = (state = initialState, action) => {
                 ...state,
                 isLoaded: action.payload
             };
-            break;
+
         case SET_PIZZAS:
             return {
                 ...state,
                 items: action.payload,
                 isLoaded: true
             };
-            break;
+
+        default:
+            return state;
     }
 
-    return state;
+
 }
 export default pizzasReducer;

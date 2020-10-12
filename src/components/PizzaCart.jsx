@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 const PizzaCard = ({ data, types, sizes, id, name, imageUrl, price, onClickAddPizza, localCurrent }) => {
 
     const availableTypes = ['тонкое', 'традиционное'];
@@ -14,7 +15,7 @@ const PizzaCard = ({ data, types, sizes, id, name, imageUrl, price, onClickAddPi
     const onSelectSize = (index) => {
         setActiveSize(index);
     }
-
+    //Create and push new object pizza
     const onAddPizza = () => {
         const obj = {
             id,
@@ -31,7 +32,7 @@ const PizzaCard = ({ data, types, sizes, id, name, imageUrl, price, onClickAddPi
         <>
             <li className='card-item'>
                 <div className='card-item__image'>
-                    <img src={data.imageUrl} alt="Pizza Photo" />
+                    <img src={data.imageUrl} alt="Pizza" />
                 </div>
                 <div className="card-item__title">{data.name}</div>
                 <div className="card-item__filters">
@@ -63,5 +64,26 @@ const PizzaCard = ({ data, types, sizes, id, name, imageUrl, price, onClickAddPi
             </li>
         </>
     )
+}
+PizzaCard.propTypes = {
+    data: PropTypes.object,
+    types: PropTypes.array,
+    sizes: PropTypes.array,
+    id: PropTypes.number,
+    name: PropTypes.string,
+    imageUrl: PropTypes.string,
+    price: PropTypes.number,
+    onClickAddPizza: PropTypes.func,
+    localCurrent: PropTypes.number
+
+}
+PizzaCard.defaultProps = {
+    types: [0, 1],
+    sizes: [0, 1, 2],
+    id: 1,
+    name: 'Маргарита',
+    imageUrl: 'https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/30367198-f3bd-44ed-9314-6f717960da07.jpg',
+    price: 300,
+    localCurrent: undefined
 }
 export default PizzaCard;

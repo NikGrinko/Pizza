@@ -1,7 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import CartItem from './CartItem';
 
 const CartButton = ({ totalPrice, totalCount }) => {
+
     return (
         <div >
             <NavLink to='/cart' className="cart-button">{totalPrice} ₽ <div className='cart-button__line'></div> <svg className='cart-button__basket' width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,5 +15,13 @@ const CartButton = ({ totalPrice, totalCount }) => {
             </NavLink>
         </div>
     )
+}
+CartButton.propTypes = {
+    totalPrice: PropTypes.number,
+    totalCount: PropTypes.number
+}
+CartItem.defaultProps = {
+    totalPrice: 0,
+    totalCount: 0
 }
 export default CartButton;

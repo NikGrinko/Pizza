@@ -55,14 +55,14 @@ const cartReducer = (state = initialState, action) => {
                 totalCount: count
             }
         }
-            break;
+
         case REMOVE_CART:
             return {
                 items: {},
                 totalPrice: 0,
                 totalCount: 0
             }
-            break;
+
         case REMOVE_ITEM_CART: {
             //create newObject and variables for remove item
             const price = state.totalPrice - state.items[action.payload].totalPrice;
@@ -78,11 +78,12 @@ const cartReducer = (state = initialState, action) => {
 
             }
         }
-            break;
+
         case MINUS_ITEM_CART: {
             const oldItems = state.items[action.payload].items;
             const newObjItems = oldItems.length > 1 ? state.items[action.payload].items.slice(1) : oldItems;
             let localPrice = state.items[action.payload].totalPrice > newObjItems[0].price ? state.items[action.payload].totalPrice - newObjItems[0].price : newObjItems[0].price;
+
             //new items after minus action
             const items = {
                 ...state.items,
@@ -116,11 +117,11 @@ const cartReducer = (state = initialState, action) => {
 
             }
         }
-            break;
+
         case PLUS_ITEM_CART: {
             const newObjItems = [
                 ...state.items[action.payload].items,
-                state.items[action.payload].items[1]
+                state.items[action.payload].items[0]
             ];
 
 
@@ -131,6 +132,7 @@ const cartReducer = (state = initialState, action) => {
                     totalPrice: newObjItems[0].price * newObjItems.length
                 }
             }
+
             const totalCount = (obj) => {
                 let sum = 0;
                 for (let item of Object.values(obj)) {
@@ -157,7 +159,9 @@ const cartReducer = (state = initialState, action) => {
                 totalPrice: price
             }
         }
+        default:
+            return state;
     }
-    return state;
+
 }
 export default cartReducer;

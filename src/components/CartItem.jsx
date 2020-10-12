@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CartItem = ({ item, globalItem, removeItem, minusItem, plusItem }) => {
 
@@ -23,6 +24,13 @@ const CartItem = ({ item, globalItem, removeItem, minusItem, plusItem }) => {
             <button onClick={() => removeItem(item.id)} className='pizza-item__delete-section'></button>
         </li>
     )
+}
+CartItem.propTypes = {
+    item: PropTypes.object,
+    globalItem: PropTypes.object,
+    removeItem: PropTypes.func,
+    minusItem: PropTypes.func,
+    plusItem: PropTypes.func
 }
 
 export default CartItem;

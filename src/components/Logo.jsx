@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from '../source/logo.svg';
+import PropTypes from 'prop-types';
 const Logo = ({ discription }) => {
+
     return (
         <div className='logo'>
 
@@ -16,4 +18,11 @@ const Logo = ({ discription }) => {
 
     )
 }
+Logo.propTypes = {
+    discription: PropTypes.string
+}
+Logo.defaultProps = {
+    discription: 'Самая вкусная пицца во вселенной'
+}
+
 export default Logo;

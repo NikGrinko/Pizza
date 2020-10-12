@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const EmptyCart = () => {
     return (
         <div className='cart-empty'>
-            <div className="cart-empty__title">Корзина пустая 😕</div>
+            <div className="cart-empty__title">Корзина пустая <span role="img" aria-label='smille'>😕</span></div>
             <div className='cart-empty__description'>Вероятней всего, вы не выбрали ещё пиццу.<br />
 Для того, чтобы выбрать пиццу, перейди на главную страницу.</div>
             <div className="cart-empty__image">

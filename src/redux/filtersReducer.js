@@ -16,7 +16,7 @@ const filtersReducer = (state = initialState, action) => {
                 ...state,
                 category: action.payload
             }
-            break;
+
         case SET_SORT_BY:
             return {
                 ...state,
@@ -25,8 +25,11 @@ const filtersReducer = (state = initialState, action) => {
                     order: action.payload.order
                 }
             }
+
+        default:
+            return state;
     }
-    return state;
+
 }
 export default filtersReducer;
 

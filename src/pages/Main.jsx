@@ -7,24 +7,27 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setCategory, setSortBy } from '../redux/actions/filtersActions';
 import { fetchPizzas } from '../redux/actions/pizzasActions';
 import { addPizzaToCart } from '../redux/actions/cartActions';
+
+const categoryNames = ['Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
+const sortItem = [
+    { id: 0, name: 'популярности', type: 'popular', order: 'desc' },
+    { id: 1, name: 'цене', type: 'price', order: 'desc' },
+    { id: 2, name: 'алфавиту', type: 'name', order: 'asc' },
+];
+
 const Main = () => {
 
     const dispatch = useDispatch();
-    const categoryNames = ['Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
+
     const { category, sortBy } = useSelector(({ filters }) => filters);
     const { items, isLoaded } = useSelector(({ pizzas }) => pizzas);
     const localCurrentPizzaCart = useSelector(({ cart }) => cart.items)
     const onSelectCategory = useCallback((index) => {
         dispatch(setCategory(index));
-    }, []);
+    }, [dispatch]);
     useEffect(() => {
         dispatch(fetchPizzas(category, sortBy))
-    }, [category, sortBy])
-    const sortItem = [
-        { id: 0, name: 'популярности', type: 'popular', order: 'desc' },
-        { id: 1, name: 'цене', type: 'price', order: 'desc' },
-        { id: 2, name: 'алфавиту', type: 'name', order: 'asc' },
-    ]
+    }, [dispatch, category, sortBy])
 
     const addPizza = (obj) => {
         dispatch(addPizzaToCart(obj))
@@ -32,7 +35,6 @@ const Main = () => {
     const filterPizza = (index) => {
         dispatch(setSortBy(index))
     }
-
     return (
         <React.Fragment>
             <Header />

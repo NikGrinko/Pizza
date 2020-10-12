@@ -1,14 +1,10 @@
 import React from 'react';
 import PizzaCard from './PizzaCart';
 import PizzaLoading from './PizzaLoading';
-import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 
 const Gallery = ({ items, categoryNames, category, isLoaded, onClickAddPizza, localCurrent }) => {
-    const dispatch = useDispatch();
-
-
-
 
     return (
         <div className='gallery'>
@@ -22,10 +18,22 @@ const Gallery = ({ items, categoryNames, category, isLoaded, onClickAddPizza, lo
                         Array(3)
                             .fill(0)
                             .map((q, index) => <PizzaLoading key={index} />)}
-
                 </ul>
             </div>
         </div>
     )
+}
+Gallery.propTypes = {
+    items: PropTypes.array,
+    categoryNames: PropTypes.array,
+    category: PropTypes.number,
+    isLoaded: PropTypes.bool,
+    onClickAddPizza: PropTypes.func,
+    localCurrent: PropTypes.object
+}
+Gallery.defaultProps = {
+    categoryNames: ["Мясные", "Вегетарианские", "Гриль", "Острые", "Закрытые"],
+    category: null,
+    isLoaded: false
 }
 export default Gallery;
