@@ -506,14 +506,14 @@ body {
         text-align: center;
         letter-spacing: 0.015em;
         color: #2c2c2c;
-        padding: 7px 5px;
+        padding: 15px 15px;
 
         .segmented-control {
             display: flex;
             &-select {
                 flex: 1 1 50%;
                 border-radius: 10px;
-                padding: 10px 23px;
+                padding: 10px 29px;
                 cursor: pointer;
                 user-select: none;
 
