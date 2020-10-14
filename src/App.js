@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path='/' render={() => <Main />} />
-        <Route exact path='https://react-pizza1.herokuapp.com/cart' render={() => <Cart />} />
+        <Route exact path='/cart' render={() => <Cart />} />
         <Route path='*' render={() => <Error404 />} />
       </Switch>
     </div>
