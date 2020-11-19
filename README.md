@@ -1,1 +1,1 @@
-https://react-pizza1.herokuapp.com/#/
+https://react-pizza-tests.herokuapp.com/
